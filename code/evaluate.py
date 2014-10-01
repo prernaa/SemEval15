@@ -40,6 +40,18 @@ class Evaluator:
     def getAvgRecall(self):
         return ((self.getRecall_pos()+self.getRecall_neg()+self.getRecall_neu())/3.0);
 
+    def getFmeasure_pos(self):
+        return ((2*self.getPrecision_pos()*self.getRecall_pos())/(self.getPrecision_pos()+self.getRecall_pos()));
+
+    def getFmeasure_neg(self):
+        return ((2*self.getPrecision_neg()*self.getRecall_neg())/(self.getPrecision_neg()+self.getRecall_neg()));
+
+    def getFmeasure_neu(self):
+        return ((2*self.getPrecision_neu()*self.getRecall_neu())/(self.getPrecision_neu()+self.getRecall_neu()));
+
+    def getAvgFmeasure(self):
+        return ((self.getFmeasure_pos()+self.getFmeasure_neg()+self.getFmeasure_neu())/3.0);
+
     def getPercentCorrect(self):
         return ((self.TP_pos+self.TP_neg+self.TP_neu)/self.lineCount)*100;
     

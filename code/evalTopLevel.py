@@ -4,14 +4,19 @@ sys.path.append("/Users/Prerna/Desktop/Prerna/NTU/Courses-Year4-Sem1/NLP/SemEval
 
 import evaluate
 E = evaluate.Evaluator();
-pPath = "UnigramSVMIgnoreUNK-B.txt";
+pPath = "UnigramSVMIgnoreUNK-B_svcpoly3.txt";
 gPath = "../rawdata/test/gold/twitter-dev-gold-B_rmnotav.tsv";
 PIdx = 0;
 gIdx = 2;
 E.evalPrediction(pPath, PIdx, gPath, gIdx);
 
+print "Average F-measure = ", E.getAvgFmeasure();
 print "Average Precision = ", E.getAvgPrecision();
 print "Average Recall = ", E.getAvgRecall();
+
+print "Positive F-measure = ", E.getFmeasure_pos();
+print "Negative F-measure = ", E.getFmeasure_neg();
+print "Neutral F-measure = ", E.getFmeasure_neu();
 
 print "Positive Precision = ", E.getPrecision_pos();
 print "Negative Precision = ", E.getPrecision_neg();
