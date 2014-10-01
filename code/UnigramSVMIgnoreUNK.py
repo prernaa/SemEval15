@@ -34,19 +34,23 @@ print "Class Label Vector Y of size ", len(YLabels), " extracted";
 
 # Training SVM
 from sklearn import svm
-print "Declaring Linear SVM"
-lin_clf = svm.LinearSVC();
+from sklearn import linear_model
+print "Declaring SVM"
+#clf = svm.LinearSVC(); # linearsvc1
+clf = svm.LinearSVC(class_weight='auto'); # linearsvc2
+#clf = svm.SVC(cache_size = 1000, class_weight='auto', kernel = 'poly'); # Predicts all as POSITIVE :((
+#clf = linear_model.SGDClassifier();  # not tried yet
 print "Fitting Data To SVM"
-lin_clf.fit(Xfeatures, YLabels);
+clf.fit(Xfeatures, YLabels);
 print "SVM trained"
 
 
 # Saving Trained Classifier
-#from sklearn.externals import joblib
-#print "Saving SVM"
-#fileToSave = "UnigramSVMClassifier.joblib.pkl";
-#_ = joblib.dump(lin_clf, fileToSave, compress=9);
-#print "Classifier SAVED!";
+from sklearn.externals import joblib
+print "Saving SVM"
+fileToSave = "UnigramSVMClassifier.joblib.pkl";
+_ = joblib.dump(clf, fileToSave, compress=9);
+print "Classifier SAVED!";
 
 
 
@@ -58,7 +62,7 @@ print "XTEST Feature Vector Extraction Started";
 XTestFeatures = extractFeatureVecX.extractFeatureVecX(testFilename, testStartColIdx, typesDict);
 print "XTEST Feature Vector of size ", len(XTestFeatures), " extracted";
 #Using Trained SVM to classify data
-predictedLabels = lin_clf.predict(XTestFeatures);
+predictedLabels = clf.predict(XTestFeatures);
 
 #Writing predicted labels to file
 writeToFile = "UnigramSVMIgnoreUNK-B.txt"
