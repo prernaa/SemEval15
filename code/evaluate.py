@@ -52,6 +52,9 @@ class Evaluator:
     def getAvgFmeasure(self):
         return ((self.getFmeasure_pos()+self.getFmeasure_neg()+self.getFmeasure_neu())/3.0);
 
+    def getAvgPosNegFmeasure(self):
+        return ((self.getFmeasure_pos()+self.getFmeasure_neg())/2.0);
+
     def getPercentCorrect(self):
         return ((self.TP_pos+self.TP_neg+self.TP_neu)/self.lineCount)*100;
     
