@@ -17,7 +17,7 @@ def extractBigramFeatureVecX(filename, startColIdx, typesDict):
     X = []; # Feature Vector X (will be 2D)
 
     f = open(filename, 'r');
-    lineCount = 1;
+    lineCount = 1.0;
     for line in f:
         itokens = line.split();
         tokens = find_bigrams(itokens);
@@ -34,11 +34,11 @@ def extractBigramFeatureVecX(filename, startColIdx, typesDict):
         # code to extract sampleX starts
         for key in typesDict:
             keyCount = words.count(key);
-            sampleX.append(keyCount);
+            sampleX.append(float(keyCount));
         # code to extract sampleX ends
         
         X.append(sampleX);
-        lineCount = lineCount + 1;
+        lineCount = lineCount + 1.0;
 
     f.close();
     return X;
